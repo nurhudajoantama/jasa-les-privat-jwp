@@ -3,6 +3,11 @@
 @section('content')
 <div class="container mt-5 pt-4">
     <h2>Manajemen Pesanan</h2>
+    <div class="mb-3 text-end">
+        <a href="{{ route('admin.orders.report') }}" class="btn btn-success">
+            <i class="bi bi-file-earmark-pdf"></i> Download Laporan Completed
+        </a>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped table-bordered align-middle">
             <thead class="table-dark">

@@ -16,7 +16,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('orders.check') }}" method="GET" class="d-flex gap-2">
+            <form action="" method="GET" class="d-flex gap-2">
                 <input type="email" name="email" class="form-control" placeholder="Masukkan email Anda" value="{{ $data['email'] ?? '' }}" required>
                 <button type="submit" class="btn btn-primary">Lihat Pesanan</button>
             </form>

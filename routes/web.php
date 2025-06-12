@@ -25,7 +25,6 @@ Route::view('contact', 'contact')->name('contact');
 
 // Pemesanan / Cek Pesanan (Public)
 Route::get('check-orders', [PageController::class, 'showOrderForm'])->name('orders.form');
-Route::post('check-orders', [PageController::class, 'checkOrders'])->name('orders.check');
 
 // Authentication Routes
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.form');
@@ -57,6 +56,8 @@ Route::group([
 
     // Order Management
     Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    // Completed Orders PDF Report (must be before show/update)
+    Route::get('orders/report', [AdminOrderController::class, 'report'])->name('orders.report');
     Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::put('orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
     Route::post('orders/{id}/status', [AdminOrderController::class, 'changeStatus'])->name('orders.changeStatus');

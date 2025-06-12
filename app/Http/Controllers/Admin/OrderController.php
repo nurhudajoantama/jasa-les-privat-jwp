@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -49,5 +50,17 @@ class OrderController extends Controller
         $order->save();
 
         return redirect()->route('admin.orders.show', $order)->with('success', 'Order updated successfully!');
+    }
+
+    /**
+     * Generate PDF report of completed orders.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function report()
+    {
+        $orders = Order::where('status', 'completed')->with('course')->get();
+        $pdf = Pdf::loadView('admin.orders.report', compact('orders'));   
+        return $pdf->download('completed_orders_report.pdf');
     }
 }
